@@ -239,7 +239,13 @@ show(){}
 }
 
 Day6:
-
+Opps concepts with ES6 concepts
+1.Class
+2.Constructor
+3.Super - base class constructor
+4.Inheritence
+5.polymorphism
+6.Encapsulation
 Day7:
 Evolution of ReactJS
 0.3.0 -0.8.0  - 2013
@@ -248,6 +254,8 @@ v16           - 2017
 v17           - 2020
 v18           - 2022
 v19           - Dec2024
+
+Expalin the examples on Import and export with employee.js and person.js and customer.js 
 
 Day8:
 
@@ -438,6 +446,7 @@ ReactDOM
 -React creates a virtual representation of your User Interface (what we call a Virtual DOM) and then ReactDOM is the library that efficiently updates the DOM based on the Virtual DOM.
 -The reason why the Virtual DOM exists is to figure out which parts of the UI need to be updated and then batch these changes together. 
 -ReactDOM receives those instructions from React and then efficiently updates the DOM.
+
 Day11:
 React Project - Folder Structure
 ================================
@@ -530,3 +539,923 @@ JSX
 
 <div></div>
 <h1><h1/>
+
+Day 14:
+
+Component
+=========
+-Components are the most basic UI building block of a React application.
+-Each Component is responsible for outputting a small,reusable piece of HTML.  
+-A Component Represents a part of the User Interface.
+-Components are Re-Usable and can be nested inside other component.
+-A React application contains a tree of components.
+-React components let you split the UI into independent, reusable pieces, 
+  and think about each piece in isolation. 
+
+
+2 types Of Component
+====================
+1. Functional Component ( stateless/presentational/dumb)
+2. Class Component ( statefull)
+
+-The simplest way to define a component in React is to write a JavaScript function:
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+-we can also use the ES6 class syntax to write components
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+-A functional component is just a plain JavaScript function which accepts props 
+ as an argument and returns a React element.
+-Functional Components are faster and much simpler than Class Components.
+-Functional components are very useful in React, especially when you want to isolate state management from the component. That’s why they are often called stateless components.
+ 
+-React class components can be defined by extending React.Component or React.PureComponent.
+-React component can be defined as an ES6 class that extends the base React.Component class.
+-a React class component must define a render method that specifies how the component renders to the DOM. 
+-The render method returns React nodes, which can be defined using JSX syntax as HTML-like tags
+-React requires that the first letter of a component class be capitalized. 
+  This is required because based on capitalization JSX can tell the difference between 
+  an HTML tag and a component instance. If the first letter of a name is capitalized, 
+  then JSX realizes it’s a component instance; if not, then it’s an HTML tag.
+
+
+	Functional Component 			Class Component
+	---------------------			---------------
+1. No 'this' keyword				1. More feature rich
+2. solution without state			2. Maintain own private data- state
+3. Mainly for UI 					3. Complex UI Logic
+4. Stateless/dumb/Presentational    4. Provide Life cycle hooks
+	
+
+
+
+When to use a Class Component over a Function Component?
+========================================================
+-If the component needs state or lifecycle methods then use class component 
+ otherwise use function component. 
+-However, from React 16.8 with the addition of Hooks, we can use state , 
+ lifecycle methods and other features  that were only available in class component 
+ in function component also. 
+-So, it is always recommended to use Function components, unless you need a React functionality whose Function component equivalent is not present yet, like Error Boundaries.
+
+ 
+imports & exports
+=================
+-Default import:
+  import DefaultMember from 'src/my_lib';
+-Named imports:
+  import { name1, name2 } from 'src/my_lib';
+-Combining a default import with named imports
+  import DefaultMember, { name1, name2 } from 'src/my_lib';
+
+
+Named Export vs Default Export
+==============================
+-Only one default export is allowed per file,where as multiple named exports are allowed per file.
+-Named exports are useful to export several values. 
+-A default export can be a function, a class, an object(cann't be variables). 
+ This value is to be considered as the “main” exported value since it will be the simplest to import
+-The name of imported module has to be the same as the name of the exported module for named exports.
+-The naming of import is completely independent in default export and we can use any name we like.
+ex: import MyReact, { MyComponent } from "react";
+           correct    wrong-namedExport
+
+Day15:
+html: 
+method1: inline css for single element
+<h1 style='{color:red;backgroundColor:lightyellow;fontSize:20px;}'>My Style Example</h1>
+method2: inner css with same file
+<head><style>
+  .mystyles{
+    color: red;
+    font-size: 20px;
+    background-color: lightyellow;
+  }
+</style></head>
+<body>
+  <h1 class="mystyles">My Style Example</h1>
+</body>
+Method3: external css file:
+<link rel="stylesheet" href="style.css">
+
+Fragments
+==========
+-While returning elements in JSX, we can only return 1 element at a time.
+ That element can have children but we have to ensure that we are only returning 1 element at a time, or else we will get a syntax error. (ex: a function can return 1 value)
+-Fragments are way to render multiple elements without using a wrapper element.
+-Fragment acts as a wrapper without adding unnecessary divs to the DOM. 
+-We can use it directly from the React import, or deconstruct it.
+	  import React from 'react';
+	  <React.Fragment>
+        <div>I am an element!</div>
+        <button>I am another element</button>
+      </React.Fragment>
+-// Deconstructed
+	import { Fragment } from 'react';
+	<Fragment>
+        <div>I am an element!</div>
+        <button>I am another element</button>
+     </Fragment>
+-React version 16.2 simplified this process further, allowing for empty JSX tags to be interpreted as Fragments
+   <>
+		<div>I am an element!</div>
+		<button>I am another element</button>
+   </>
+ 
+ 
+ 
+Data Binding
+============
+-Binding/Displaying  the variable value in UI is called data binding.
+databinding sntax: {your_variable_name}
+
+
+ 
+
+CSS in React
+============
+different ways to add CSS:
+1. inline CSS
+2. External CSS
+3. global css(index.css)
+4. CSS Modules
+5. Conditional CSS 
+
+
+CSS Modules
+===========
+-This approach is designed to fix the problem of the global scope in CSS.
+-A CSS Module is a CSS file in which all class names are scoped locally by default.
+-CSS Modules allow to use the same CSS class name in different files without worrying about naming clashes.
+-CSS Modules allow the scoping of CSS by automatically creating a unique classname of the below format.
+	ex: [filename]\_[classname]\_\_[hash]
+-ClassNames are dynamically generated, unique, and mapped to the correct styles.
+-When importing the CSS Module from a JS Module, it exports an object.
+	import styles from './Button.module.css'; // Import css modules stylesheet as styles
+	import './another-stylesheet.css'; // Import regular stylesheet
+	<button className={styles.error}>Error Button</button>;
+-it will only apply the classname from css module even if both files have same 'error' class;
+
+Day16:
+How to Use Bootstrap in a React application
+===========================================
+1. install bootstrap
+   npm i bootstrap@3.3.7 (particular version)
+          OR
+   npm i bootstrap     (latest version)
+   npm i bootstrap-icons 
+   
+	
+2. use 'bootstrap.min.css' in index.js file
+   import "bootstrap/dist/css/bootstrap.min.css";
+   import "bootstrap/dist/js/bootstrap.bundle.min.js";
+   import 'bootstrap-icons/font/bootstrap-icons.css';
+   
+
+How to Use Bootstrap in a React application using CDN Link
+===========================================================
+-Bootstrap can be used in a react application just by adding the below CDN link in 'index.html'
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+ 
+
+
+How to use Bootstrap icons
+==========================
+<i className="bi-alarm"></i>
+<h1><i className="bi-airplane" style={{ fontSize: "2rem", color: "cornflowerblue" }}></i></h1>
+
+Day17:
+props
+=====
+-Props are inputs to components.
+-Props stand for properties and is a special keyword in React.
+-Attributes on Components get converted into an object called Props.
+-Helps to Pass custom data to a component.
+-props are used to pass data and methods from a parent component to a child component.
+-data with props are being passed in a uni-directional flow. (one way from parent to child).
+-We can pass props to any component as we declare attributes for any HTML tag
+ <ChildComponent someAttribute={value} anotherAttribute={value}/>
+-React props passed with just their name have a value of true.
+ <myComponent showTitle={true}> 
+ <myComponent showTitle> 
+-The props can be accessed as shown below
+ this.props.propName; (Class Component)
+ props.propName; (Functional Component)
+
+1.They are immutable. data coming from the parent should not be changed by child components. we will get an error if you try to change their value.
+2.data with props are being passed in a uni-directional flow. (one way from parent to child)
+
+
+Day18:
+Props De-structuring
+====================
+-It’s a JavaScript feature that allows us to extract multiple pieces of data from an array or object and assign them to their own variables.
+-Improves readability.
+-we can get rid of props/this.props in front of each property. 
+
+-props de-structuring in functional component
+ export default function Greet({ name, msg }){}
+-we de-structure props in the render() function.(class Component)
+ ex: let { pId, name, price } = this.props.product;
+
+Day19:
+ PropTypes
+=========
+
+What is PropTypes?
+
+PropTypes is a built-in type-checking mechanism in React (through the prop-types package) that helps validate the props passed to a component.
+
+It ensures that components receive the correct type of data from their parent components.
+
+Why use PropTypes?
+Detect bugs early during development.
+Improve code readability.
+Make components self-documenting.
+Validate incoming props.
+Show warnings when incorrect data types are passed.
+
+Note: PropTypes only work in Development Mode. They do not run in Production Mode for performance reasons.
+
+PropTypes package Install command: npm install prop-types
+
+-React has some built-in typechecking abilities.
+-To run typechecking on the props for a component,we can assign the special propTypes property.
+-PropTypes exports a range of validators that can be used to make sure the data the component receive is valid.
+-When an invalid value is provided for a prop, a warning will be shown in the browser console. 
+-For performance reasons, propTypes is only checked in development mode.not in production.
+
+1. import PropTypes from 'prop-types';  
+2. ComponentName.propTypes = {	
+		variableName: PropTypes.string	
+	};	
+  optionalArray: PropTypes.array,
+  optionalBool: PropTypes.bool,
+  optionalFunc: PropTypes.func,
+  optionalNumber: PropTypes.number,
+  optionalObject: PropTypes.object,
+  optionalString: PropTypes.string,
+  optionalSymbol: PropTypes.symbol,
+  optionalElement: PropTypes.element,
+  optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+  optionalObjectWithShape: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number
+  }),
+
+Requiring Props
+===============
+-If prop values are not passed to a certain component, no error will be thrown.
+Instead, within the component that prop will have a value of 'undefined'.
+-Apart from specifying the type of the prop that can be passed to the component, 
+ we can also make sure the prop is always provided to the component by chaining 
+ isRequired at the end of the prop validator.
+
+Student.propTypes = {
+  name: PropTypes.string.isRequired, // Required Prop
+  age: PropTypes.number  // Optional Prop
+}
+
+Default props
+=============
+-defaultProps allows to set default value for props. 
+-ex: 	
+	Greet.defaultProps = {	
+		msg: 'this is my default message'	
+	}	
+-Functional Component & destructuring
+ export default function Greet({name , msg='good morning'}) {
+ }
+ 
+
+Props.children	
+==============
+-In React, you can send the content between the opening and closing tags of a component, to another component.
+This can be accessed in the other component using the props.children property.
+-From the Parent component, send the content between the opening and closing tags of the Son and Daughter components:	
+
+-props.children represents the content between the tags of a Component.
+-props.children can be an array or a single item.
+-props.children is available on every component.	
+-<Welcome>Hello world!</Welcome>	
+-The string Hello world! is available in props.children in the Welcome component.	
+-class Welcome extends React.Component {	
+  render() {	
+    return <p>{this.props.children}</p>;	
+  }	
+}
+
+Ensuring Single Child
+=====================
+-We can use PropTypes.element to enforce that only a single child can be passed 
+ to a component as children.
+-If we try to pass more than 1 child to the component, we will get an error.
+Ex: 	
+Greet.propTypes = {	
+    children: PropTypes.element	
+};
+
+Day20:
+
+Functional Components-  useState() - Hooks 
+
+1.{useState} - it is using from react library and named export so we are using {}
+2.useState() is to initialize the default value and return array -> useState(0) - 0 is default value
+3.It has value and functionName  -> [value, updateCounter]
+4.Once you call the method of updateCounter, it will update the value and rerender the component.
+
+Class components   - state - Life cycle methods
+
+-State is object and it is build in React.component from react library.
+-We create a state object and it is updating though setState
+
+1.We are update state directly then we get undefind error to avoid that we use bind method.
+2 we use bind method to update state without updating directly in setState()
+3.we should call super() in constructor after that we should write our logic
+4.setState is asynchronous method. setState allow two inputs
+5.object and call back function -> object is state and call back function if we want to any action after updating state.
+6.before React 16 we can declare State object in constructor only
+7.After React 16 we can declare state object in outside or inside constructor.
+
+Day21:
+
+Why State variables
+===================
+Re-rendering : when state variable changes, React re-renders the component with new value
+Persistence : states are persisted accross re-renders
+
+
+States
+======
+-The State of a component is an object that holds some data that may change over the lifetime of the component.
+-whenever the state object changes,react will re-render the component. 
+-States are Mutable(can be changed), and states are local to the component, cann't be used by other components directly
+-Keep the state minimal , avoid using state for static data. 
+
+
+
+State in Class Component
+========================
+-class components have a state object , where all the state variables are declared. 
+ To update state variables, setState() should be used;
+-State object is usually initialized inside the constructor in class components.
+-UI will not Re-render when we change state directly, setState() should be used.
+  this.counter = this.counter + 1; // re-render won't happpen
+  this.setState({counter:this.state.counter+1});  // re-render will happpen
+-use setState() to change the state of react Component. 
+ it ensures that render() gets called.
+-If a piece of code needs to be executed only after the state has been updated, then 
+ place that code in the callback function which is the second arguement to setState()
+ Syntax: setState( StateObject, callbackFunction);
+  ex:    setState( {} , ()=>{} );
+ 
+ 
+Note:
+-----
+-setState() actions are asynchronous. setState() doesn’t immediately mutate this.state.
+-React may group multiple setState() calls in to a single update for better performance
+-when we want to update the state based on the previous State value,
+ we need to pass a function as an arguement to setState() instead passing an object.
+ ex:- this.setState({ value: this.state.value + 1 });   
+      this.setState(prevState => ({ value: prevState.value + 1 }));   
+	
+
+
+State in Functional Component
+=============================
+-State in functional Component can be maintained using useState() hook.
+-useState() is used to declare a state variable in function component.
+-The only argument to the useState() Hook is the initial state.
+-It returns a pair of values: 
+  a. State value
+  b. function to update that state value. 
+  ex: const [count, setCount] = useState(0);
+-state updation is asynchronous, 
+   const increment = () => {
+    setCount(count + 1);
+	console.log(count);  // this will be executed before state update
+  };
+-If a piece of code needs to be executed only after the state has been updated, then place that code in the 'useEffect()'
+-when we want to update the state based on the previous State value,pass a callBack to setter
+ ex: setCount((prevState) => prevState + 1);
+	 setCount(count + 1);
+	 
+		Props        		  vs 					State
+=======================================================================
+1. Props are immutable.					1. State is mutable/modifiable.
+2. pass data from parent component 		2. contains own data & changes over time
+   to child component
+3. communicate between components		3. rendering dynamic changes
+4. props - Functional Comp				4. useState()      - Functional Comp
+   this.props - class comp		  		   this.state={}   - Class Comp
+
+Day22:
+
+state -> UI  - oneway binding
+
+state <-> UI - twoway binding
+
+TernaryOperator - isTure ?  true : false
+
+What is useEffect?
+
+useEffect is a React Hook used to perform side effects in functional components.
+
+Examples of Side Effects
+Fetching data from an API
+Updating the document title
+Setting up timers (setInterval, setTimeout)
+Accessing browser storage (localStorage)
+Adding/removing event listeners
+
+Before Hooks, these tasks were handled in class component lifecycle methods like:
+
+componentDidMount()
+componentDidUpdate()
+componentWillUnmount()
+
+With functional components, React provides the useEffect hook.
+
+useEffect(()=>{},[]) -> useEffect(callback, dependencies)
+
+
+Day23:
+ componentDidMount = useEffect()
+ Contstructor() -> render() - componentDidMount()
+ 
+syntax:
+import { useEffect } from 'react';
+
+useEffect(() => {
+   // Side Effect Code
+
+}, [dependencies]);
+
+Dependency Array Summary:
+
+useEffect(() => {})	               Every render
+useEffect(() => {}, [])	           Only once (mount)
+useEffect(() => {}, [count])	   When count changes
+useEffect(() => {}, [count, name]) When count or name changes
+
+useEffect()
+----------
+-useEffect serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount.
+-useEffect() takes a callBack Function as 1st argument and Dependency arrray as 2nd argument.
+ ex: useEffect(()=>{} , []);
+-array contains dependencies for useEffect,variables on which useEffect depends on to re-run.
+-If 2nd argument is not present, effect runs everytime there is a state change.
+-When 2nd argument is there and the array is empty, the effect runs only once.(on component load)
+-If 2nd arguement is present, effect will only run if the values in the list change.
+-we can have many useEffects() in a component to track changes for diff variables.
+
+
+========================================================
+Functional Components with Hooks
+
+React Hooks allow functional components to use:
+
+State
+Lifecycle methods
+Context
+Refs
+
+Why are Hooks better?
+Less code
+Easier maintenance
+Reusable logic
+No this keyword
+Better readability
+Quick Lifecycle Mapping
+
+================================================================================
+Class Component                Functional Component
+
+constructor()           →      useState()
+
+componentDidMount()     →      useEffect(() => {}, [])
+
+componentDidUpdate()    →      useEffect(() => {}, [dependency])
+
+componentWillUnmount()  →      return cleanup function
+
+==================================================================
+
+without writing class components.
+============================================================
+Common React Hooks
+Hook	        Purpose
+useState	    Manage State
+useEffect	    Lifecycle Events
+useContext	    Access Context
+useRef	        DOM Reference
+useMemo	        Performance Optimization
+useCallback     Memoize Functions
+useReducer	    Complex State
+useLayoutEffect	DOM Updates Before Paint
+
+Lifecycle Mapping:
+
+Class Lifecycle	        Functional Hook
+-------------------------------------------------------
+constructor	        Initialization
+componentDidMount	useEffect(() => {}, [])
+componentDidUpdate	useEffect(() => {}, [dependency])
+componentWillUnmount	return cleanup function
+
+
+Day24:
+
+What is useRef()?
+
+useRef() is a React Hook that allows you to:
+Access DOM elements directly.
+
+Normally, when state changes using useState(), React re-renders the component.
+Sometimes you want to store a value without re-rendering the component.
+
+Use useState when the value affects what the user sees on the screen.
+Use useRef when you need to remember a value or access a DOM element without triggering a re-render.
+
+syntax:
+import { useRef } from 'react';
+
+const refName = useRef(initialValue);
+
+Example:
+
+const inputRef = useRef(null);
+
+Comparision:
+JavaScript	                      React
+document.getElementById()         useRef()
+Direct DOM manipulation	          React-managed reference
+Manual lookup	                  Persistent reference
+
+StrictMode:
+React 18's StrictMode intentionally invokes components twice during development to detect side effects and help developers write safer code. 
+This behavior only occurs in development mode and does not happen in production builds
+useMemo() is a React Hook used to memoize (cache) the result of an expensive calculation.
+
+It prevents unnecessary recalculations when a component re-renders.
+
+
+Refs (Template Reference Variable)
+==================================
+-reference variables: help  to use data from one part of a template in another part of the template.
+-with reference variables, we can perform tasks such as respond to user input or
+ fine tune your application's forms.
+-Refs provide a way to access DOM nodes or React elements.
+-used to modify child comp (OR) DOM.
+-Managing focus, text selection , animations.
+-ex: this.myRef1 = React.createRef();  (class component)
+     const myRef1 = useRef();          (function component)
+
+Day25:
+
+useMemo() is a React Hook used to memoize (cache) the result of an expensive calculation.
+It prevents unnecessary recalculations when a component re-renders.
+
+Syntax:
+
+import { useMemo } from 'react';
+
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation();
+}, [dependencies]);
+
+Callback Function
+
+() => {
+   return value;
+}
+
+Dependency Array
+
+[dependencies]
+
+React recalculates the value only when dependencies change.
+
+What is useMemo?
+
+A React Hook that memoizes the result of a calculation and returns a cached value until dependencies change.
+
+Why use useMemo?
+
+To avoid unnecessary recalculations and improve performance.
+
+Does useMemo prevent re-rendering?
+
+❌ No.
+
+It only prevents recalculating a value.
+
+The component still re-renders.
+
+-The functions called inside component are re-invoked on every state change.
+-If we want the functions should be called only on component load and not on every state changes then for that function, 
+useMemo should be used.
+-useMemo Hook returns a memoized value.
+-The useMemo(()=>{} , []) hook accepts a second parameter to declare dependencies. 
+ The function will only run when its dependencies are changed.
+-The main difference between usememo() and useCallBack() is that 
+ useMemo() returns a memoized value and useCallback() returns a memoized function.
+ex: 
+  // const calculation = expensiveCalculation(count); // function gets called on every state change
+  // const calculation = useMemo(() => expensiveCalculation(count), []); // function gets called on page load
+  const calculation = useMemo(() => expensiveCalculation(count), [count]); // function gets called on count change
+
+
+Day26:
+
+useCallback() is a React Hook used to memoize (cache) a function.
+
+It prevents a function from being recreated on every component re-render unless its dependencies change.
+
+"useCallback() is a React performance optimization hook that memoizes a function reference and prevents unnecessary function recreation during component re-renders until its dependencies change."
+
+Syntax:
+import {useCallback} from 'react'
+const memoizedFunction = useCallback(
+    () => {
+        // function logic
+    },
+    [dependencies]
+);
+Why Do We Need useCallback()?
+
+In React, whenever a component re-renders:
+
+All variables are recreated
+All functions inside the component are recreated
+
+
+What is useContext()?
+
+useContext() is a React Hook used to share data between components without passing props manually through every level.
+
+It helps to avoid Prop Drilling.
+
+Problem: Prop Drilling
+
+Suppose we have this component structure:
+
+App
+ |
+ ├── Header
+ |
+ └── Dashboard
+        |
+        └── UserProfile
+
+If App has user information and UserProfile needs it:
+
+Without Context:
+
+App
+ |
+ | (props)
+ ↓
+Dashboard
+ |
+ | (props)
+ ↓
+UserProfile
+
+Even though Dashboard does not need the data, it has to pass it.
+
+This is called Prop Drilling.
+
+
+Context creates a global data storage that components can access directly.
+
+          Context
+             |
+   ---------------------
+   |         |          |
+ Header  Dashboard  UserProfile
+Steps to Use useContext()
+
+There are three steps:
+
+Create Context
+Provide Context Value
+Consume Context using useContext()
+Example: Theme Context
+
+We will create:
+
+ThemeContext
+ThemeProvider
+Child Component consuming the theme
+
+Day27:
+What is useLayoutEffect()?
+
+useLayoutEffect() is a React Hook that is similar to useEffect(), but it runs synchronously after React updates the DOM and before the browser paints the screen.
+
+In simple words:
+
+React updates the DOM
+useLayoutEffect() executes
+Browser paints the updated UI
+
+This allows you to measure DOM elements, modify layout, or prevent visual flickering.
+
+syntax:
+useLayoutEffect(() => {
+
+    // code runs after DOM update
+
+    return () => {
+       // cleanup
+    };
+
+}, [dependencies]);
+
+useLayoutEffect()
+Component Render
+       |
+       ↓
+React Updates DOM
+       |
+       ↓
+useLayoutEffect Executes
+       |
+       ↓
+Browser Paints Screen
+
+The browser waits until useLayoutEffect completes.
+
+Custom Hook:
+
+What is a Custom Hook?
+
+A Custom Hook is a JavaScript function created by developers to reuse stateful logic between multiple React components.
+
+A custom hook:
+
+Starts with the prefix use
+Can use built-in hooks like:
+useState
+useEffect
+useContext
+useRef
+Helps avoid duplicate code
+Separates business logic from UI components
+Why Do We Need Custom Hooks?
+
+Suppose we have two components:
+
+Component 1: User Login
+
+
+Component 1: User Login
+function Login() {
+
+  const [username, setUsername] = useState("");
+
+  return (
+    <input
+      value={username}
+      onChange={(e)=>setUsername(e.target.value)}
+    />
+  );
+}
+Component 2: Registration
+function Register() {
+
+  const [username, setUsername] = useState("");
+
+  return (
+    <input
+      value={username}
+      onChange={(e)=>setUsername(e.target.value)}
+    />
+  );
+}
+
+
+Both components have the same logic.
+
+Problems:
+
+Duplicate code
+Difficult maintenance
+Logic mixed with UI
+
+Custom Hook solves this.
+
+
+Custom Hook Syntax
+function useCustomHook(){
+
+   // state logic
+
+   // effect logic
+
+   return value;
+
+}
+
+What is useReducer()?
+
+useReducer() is a React Hook used for managing complex state logic in functional components.
+
+It is an alternative to useState().
+
+useReducer() is especially useful when:
+
+State has multiple values.
+State updates depend on previous state.
+Multiple actions can change the state.
+You want predictable state management.
+
+
+useState():
+const [count, setCount] = useState(0);
+setCount(count + 1);
+
+
+useReducer():
+const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({type:"INCREMENT"});
+
+Parameters
+Parameter	Meaning
+reducer	        Function containing state update logic
+initialState	Initial state value
+
+Returns
+Return Value	Meaning
+state	        Current state
+dispatch	Function to trigger state changes
+
+useReducer vs useState
+Feature	useState	useReducer
+Simple state	✅ Best	❌ Not required
+Complex state	⚠ Difficult	✅ Best
+Multiple updates	⚠ Many handlers	✅ Actions
+Logic location	Component	Reducer
+Debugging	Medium	Easier
+Large applications	Less suitable	More suitable
+
+Day28:
+===========================================================
+Class component lifecycle:
+
+React Functional Hooks and Class Component Lifecycle
+
+React components can be created in two ways:
+
+Class Components (older approach)
+Functional Components with Hooks (modern approach)
+1. Class Component Lifecycle
+
+A React class component goes through three main phases:
+
+1. Mounting
+2. Updating
+3. Unmounting
+Lifecycle Diagram
+Constructor()
+      ↓
+render()
+      ↓
+componentDidMount()
+
+------------------------
+
+Props/State Change
+      ↓
+shouldComponentUpdate()
+      ↓
+render()
+      ↓
+componentDidUpdate()
+
+------------------------
+
+Component Removed
+      ↓
+componentWillUnmount()
+
+===========================================================
+
+Before React 16.8:
+
+State → Class Component Only
+Lifecycle → Class Component Only
+
+After React 16.8:
+
+State + Lifecycle
+        ↓
+Functional Components
